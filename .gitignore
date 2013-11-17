@@ -1,21 +1,34 @@
-# Xcode
-.DS_Store
-*/build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-profile
-*.moved-aside
-DerivedData
-.idea/
-*.hmap
-*.xccheckout
+# Object files
+*.o
 
-#CocoaPods
-Pods
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# arm folders
+**/arm/*
+!*.uvproj
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#SDK
+nrf51822_sdk/*
+! nrf51822_sdk/README.md
