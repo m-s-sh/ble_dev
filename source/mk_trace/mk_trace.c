@@ -101,40 +101,40 @@ uint32_t mk_trace_init(uint32_t tx_buf_size, uint32_t rx_buf_size)
                 return err_code;
         }
 
-    // Configure RX and TX pins.
+        // Configure RX and TX pins.
         //      secure correct signal levels when UART is off
-    nrf_gpio_cfg_output(BLE_DEV_BOARD_UART_TX_PIN);
+        nrf_gpio_cfg_output(BLE_DEV_BOARD_UART_TX_PIN);
         nrf_gpio_pin_set(BLE_DEV_BOARD_UART_TX_PIN);
-    nrf_gpio_cfg_input(BLE_DEV_BOARD_UART_RX_PIN, NRF_GPIO_PIN_NOPULL);
-    NRF_UART0->PSELTXD = BLE_DEV_BOARD_UART_TX_PIN;
-    NRF_UART0->PSELRXD = BLE_DEV_BOARD_UART_RX_PIN;
-    NRF_UART0->PSELRTS = UART_PIN_DISCONNECTED;
-    NRF_UART0->PSELCTS = UART_PIN_DISCONNECTED;
+        nrf_gpio_cfg_input(BLE_DEV_BOARD_UART_RX_PIN, NRF_GPIO_PIN_NOPULL);
+        NRF_UART0->PSELTXD = BLE_DEV_BOARD_UART_TX_PIN;
+        NRF_UART0->PSELRXD = BLE_DEV_BOARD_UART_RX_PIN;
+        NRF_UART0->PSELRTS = UART_PIN_DISCONNECTED;
+        NRF_UART0->PSELCTS = UART_PIN_DISCONNECTED;
 
-    // Configure baud rate and parity.
-    NRF_UART0->BAUDRATE = (UART_BAUDRATE_BAUDRATE_Baud921600 << UART_BAUDRATE_BAUDRATE_Pos);
+        // Configure baud rate and parity.
+        NRF_UART0->BAUDRATE = (UART_BAUDRATE_BAUDRATE_Baud921600 << UART_BAUDRATE_BAUDRATE_Pos);
         NRF_UART0->CONFIG = (UART_CONFIG_PARITY_Excluded << UART_CONFIG_PARITY_Pos);
-    NRF_UART0->CONFIG &= ~(UART_CONFIG_HWFC_Enabled << UART_CONFIG_HWFC_Pos);
+        NRF_UART0->CONFIG &= ~(UART_CONFIG_HWFC_Enabled << UART_CONFIG_HWFC_Pos);
 
         NRF_UART0->POWER = (UART_POWER_POWER_Enabled << UART_POWER_POWER_Pos);
-    NRF_UART0->ENABLE = (UART_ENABLE_ENABLE_Enabled << UART_ENABLE_ENABLE_Pos);
+        NRF_UART0->ENABLE = (UART_ENABLE_ENABLE_Enabled << UART_ENABLE_ENABLE_Pos);
 
         NRF_UART0->EVENTS_RXDRDY = 0;
-    NRF_UART0->EVENTS_TXDRDY = 0;
-    NRF_UART0->TASKS_STARTTX = 1;
-    NRF_UART0->TASKS_STARTRX = 1;
+        NRF_UART0->EVENTS_TXDRDY = 0;
+        NRF_UART0->TASKS_STARTTX = 1;
+        NRF_UART0->TASKS_STARTRX = 1;
 
         m_current_state = UART_READY;
 
-    // Enable UART interrupt
-    NRF_UART0->INTENCLR = 0xffffffffUL;
-    NRF_UART0->INTENSET = (UART_INTENSET_RXDRDY_Set << UART_INTENSET_RXDRDY_Pos) |
-                          (UART_INTENSET_TXDRDY_Set << UART_INTENSET_TXDRDY_Pos) |
-                          (UART_INTENSET_ERROR_Set << UART_INTENSET_ERROR_Pos);
+        // Enable UART interrupt
+        NRF_UART0->INTENCLR = 0xffffffffUL;
+        NRF_UART0->INTENSET = (UART_INTENSET_RXDRDY_Set << UART_INTENSET_RXDRDY_Pos) |
+                (UART_INTENSET_TXDRDY_Set << UART_INTENSET_TXDRDY_Pos) |
+                (UART_INTENSET_ERROR_Set << UART_INTENSET_ERROR_Pos);
 
-    NVIC_ClearPendingIRQ(UART0_IRQn);
-    NVIC_SetPriority(UART0_IRQn, APP_IRQ_PRIORITY_LOW);
-    NVIC_EnableIRQ(UART0_IRQn);
+        NVIC_ClearPendingIRQ(UART0_IRQn);
+        NVIC_SetPriority(UART0_IRQn, APP_IRQ_PRIORITY_LOW);
+        NVIC_EnableIRQ(UART0_IRQn);
 
         return NRF_SUCCESS;
 }
@@ -168,15 +168,12 @@ void UART0_IRQHandler(void)
                 }
     }
 
-    if (NRF_UART0->EVENTS_ERROR != 0){  // Handle errors.
+    if (NRF_UART0->EVENTS_ERROR != 0) {  // Handle errors.
                 NRF_UART0->EVENTS_ERROR = 0;  // Clear UART ERROR event flag.
                 // Clear error source.
                 uint32_t error_source = NRF_UART0->ERRORSRC;
                 NRF_UART0->ERRORSRC = error_source;
     }
 }
-
-
-
 
 #endif

@@ -30,5 +30,5 @@ ehthumbs.db
 Thumbs.db
 
 #SDK
-nrf51822_sdk/*
-! nrf51822_sdk/README.md
+board/ble_dev_n/nrf51822_sdk/*
+! board/ble_dev_n/nrf51822_sdk/nrf51822_sdk/README.md
