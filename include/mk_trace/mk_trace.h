@@ -1,12 +1,12 @@
-/*  
+/*
  *  mk_trace.h - UART trace library
- *  
+ *
  * 	For using mk_trace functionality:
  *	1. include this mk_trace.h file
  *	2. call once mk_trace_init(TX_BUF_SIZE, RX_BUF_SIZE);
  *	Now you are ready to use mk_trace(...) for sending diagnostic messages via UART/USB to PC
  *	Note: TX_BUF_SIZE and RX_BUF_SIZE must be power of 2
- *	
+ *
  *  Copyright (c) 2013 Mommosoft Ltd.
  *
  *  This program is free software; you can redistribute it and/or modify

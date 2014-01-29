@@ -28,12 +28,11 @@
 
 int main(void)
 {
-        // Configure green LED-pin as output
-        nrf_gpio_cfg_output(BLE_DEV_BOARD_LED_GREEN);
+    // Configure green LED-pin as output
+    nrf_gpio_cfg_output(BLE_DEV_BOARD_LED_GREEN);
 
-        while(true)
-        {
-                nrf_gpio_pin_toggle(BLE_DEV_BOARD_LED_GREEN);
-                nrf_delay_ms(100);
-        }
+    while(true) {
+        nrf_gpio_pin_toggle(BLE_DEV_BOARD_LED_GREEN);
+        nrf_delay_ms(100);
+    }
 }
