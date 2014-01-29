@@ -1,6 +1,6 @@
-/*  
+/*
  *  ble_dev_board_profile.h - Predefined BLE DEV.N Board pins
- *  
+ *
  *  Copyright (c) 2013 Mommosoft Ltd.
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -26,6 +26,11 @@
 
 #define	BLE_DEV_BOARD_UART_TX_PIN		6
 #define	BLE_DEV_BOARD_UART_RX_PIN		7
-//#define MK_UART_BAUDRATE	UART_BAUDRATE_BAUDRATE_Baud921600
+
+#ifdef BLE_DEV_N_R1
+        #define BUTTON_PULL    NRF_GPIO_PIN_NOPULL
+#else
+        #define BUTTON_PULL    NRF_GPIO_PIN_PULLUP
+#endif
 
 #endif /*__BLE_DEV_BOARD_PROFILE_H__*/
